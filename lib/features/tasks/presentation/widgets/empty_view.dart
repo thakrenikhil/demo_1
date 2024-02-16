@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
+import '../../../../core/utils/color_constants.dart';
+
 class EmptyView extends StatelessWidget {
   const EmptyView({
     super.key,
@@ -9,6 +11,8 @@ class EmptyView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: ColorConstant.appGradient,
+
       width: double.infinity,
       height: double.infinity,
       padding: const EdgeInsets.symmetric(

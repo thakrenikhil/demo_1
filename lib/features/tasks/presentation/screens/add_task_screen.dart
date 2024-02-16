@@ -1,3 +1,4 @@
+import 'package:clean_todo/core/utils/color_constants.dart';
 import 'package:flutter/material.dart';
 import '../widgets/add_task_form.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -14,6 +15,7 @@ class AddTaskScreen extends StatelessWidget {
         title: Text(AppLocalizations.of(context)!.addTaskScreenTitle),
       ),
       body: Container(
+        decoration:  ColorConstant.appGradient,
         padding: const EdgeInsets.all(20),
         child: const AddTaskForm(),
       ),

@@ -5,9 +5,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/core.dart';
+import '../../../../core/utils/size_utils.dart';
 import '../../tasks.dart';
 import '../controllers/task_controller.dart';
 import '../states/task_state.dart';
+import 'custom_button.dart';
+import 'custom_text_form_field.dart';
 
 class AddTaskForm extends ConsumerStatefulWidget {
   const AddTaskForm({
@@ -61,34 +64,30 @@ class _AddTaskFormState extends ConsumerState<AddTaskForm> {
       key: formKey,
       child: Column(
         children: [
-          TextFormField(
+          CustomTextFormField(
+            focusNode: FocusNode(),
             controller: taskTitleController,
-            maxLines: 3,
+            hintText: AppLocalizations.of(context)!.taskTitleHint,
+            margin: getMargin(top: 75),
+            maxLength: 10,
+            // readOnly: controller.requestedOtp.value,
+            inputType: TextInputType.name,
             validator: (value) {
               final failure = TaskValidator.validateTitle(value!);
               return mapValidationFailureToMessage(context, failure);
             },
-            decoration: InputDecoration(
-              hintText: AppLocalizations.of(context)!.taskTitleHint,
-              hintStyle: const TextStyle(
-                color: Color(0xff565765),
-              ),
-              filled: true,
-            ),
           ),
           const SizedBox(
-            height: 10,
+            height: 20,
           ),
-          MaterialButton(
-            minWidth: double.infinity,
-            onPressed: () {
+          CustomButton(
+            height: 40,
+            width: 316,
+            text: "Add Task",
+            onTap: () {
               if (formKey.currentState!.validate()) submit();
             },
-            color: const Color(0xffffd78a),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 15),
-              child: Text(AppLocalizations.of(context)!.saveTaskButton),
-            ),
+            imagePath: '',
           ),
         ],
       ),

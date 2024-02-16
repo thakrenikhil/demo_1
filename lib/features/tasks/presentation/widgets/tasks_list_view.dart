@@ -1,6 +1,7 @@
 import 'package:clean_todo/features/tasks/presentation/states/task_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../core/utils/color_constants.dart';
 import '../../../../core/utils/failure.dart';
 import '../../tasks.dart';
 import '../controllers/task_controller.dart';
@@ -41,17 +42,20 @@ class _TasksListViewState extends ConsumerState<TasksListView> {
     }
 
     if (state is TasksData) {
-      return Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 15,
-          vertical: 10,
-        ),
-        child: ListView.builder(
-          itemCount: state.tasks.length,
-          itemBuilder: (context, index) {
-            var task = state.tasks[index];
-            return TaskView(task: task);
-          },
+      return Container(
+        decoration: ColorConstant.appGradient,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 15,
+            vertical: 10,
+          ),
+          child: ListView.builder(
+            itemCount: state.tasks.length,
+            itemBuilder: (context, index) {
+              var task = state.tasks[index];
+              return TaskView(task: task);
+            },
+          ),
         ),
       );
     }
